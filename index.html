@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chad gun - Équipements Militaires Professionnels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#1a3a5f',secondary:'#d9a64e'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.custom-checkbox {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+margin-right: 8px;
+}
+.custom-checkbox input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #1a3a5f;
+border-color: #1a3a5f;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #1a3a5f;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+display: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- Header -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+<!-- Bandeau de sécurité -->
+<div class="bg-primary text-white py-1 px-4 text-center text-sm">
+<div class="flex items-center justify-center gap-2">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-shield-check-line"></i>
+</div>
+<span>Site Sécurisé - Accès Professionnel</span>
+</div>
+</div>
+<!-- Navigation principale -->
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-primary mr-2">
+<i class="ri-shield-star-line ri-lg"></i>
+</div>
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">Chad gun</a>
+</div>
+<!-- Barre de recherche -->
+<div class="hidden md:flex items-center flex-1 max-w-xl mx-8">
+<div class="relative w-full">
+<input type="search" placeholder="Rechercher un équipement..." class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<!-- Navigation droite -->
+<div class="flex items-center gap-4">
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+<i class="ri-search-line ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+<i class="ri-user-line ri-lg"></i>
+</button>
+<div class="relative">
+<button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+<i class="ri-shopping-cart-line ri-lg"></i>
+</button>
+<span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+</div>
+<button class="w-10 h-10 md:hidden flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+<!-- Menu de navigation -->
+<nav class="hidden md:block border-t border-gray-200">
+<div class="container mx-auto px-4">
+<ul class="flex items-center justify-center space-x-8">
+<li><a href="pro.html" class="py-3 px-2 inline-block font-medium text-primary border-b-2 border-primary">Accueil</a></li>
+<!--li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Catalogue</a></li>
+<li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Nouveautés</a></li-->
+<li><a href="promo.html" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">promotions</a></li>
+<!--li><a href="apropos.html" data-readdy="true" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">À propos</a></li-->
+</ul>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative w-full bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=professional%20military%20equipment%20displayed%20in%20a%20clean%20modern%20showroom%20with%20tactical%20gear%2C%20bulletproof%20vests%2C%20and%20communication%20devices%20arranged%20professionally.%20The%20image%20has%20a%20blue-tinted%20professional%20atmosphere%20with%20subtle%20lighting%20highlighting%20the%20equipment.%20The%20left%20side%20has%20a%20gradient%20to%20white%20for%20text%20placement&width=1600&height=600&seq=hero1&orientation=landscape');">
+<div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+<div class="container mx-auto px-4 py-20 md:py-28 relative">
+<div class="w-full md:w-1/2 lg:w-5/12">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Équipements Militaires Professionnels</h1>
+<p class="text-lg text-gray-700 mb-8">Matériel de haute qualité certifié aux normes internationales pour les professionnels de la défense et de la sécurité.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-white py-3 px-6 rounded-button font-medium hover:bg-primary/90 transition-colors shadow-md whitespace-nowrap">
+Accéder au Catalogue
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Barre de Navigation Secondaire -->
+<section class="bg-gray-100 border-y border-gray-200">
+<div class="container mx-auto px-4 py-3">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-6">
+<span class="text-sm font-medium text-gray-700">Filtrer par:</span>
+<div class="flex flex-wrap gap-3">
+<button class="bg-white px-4 py-2 text-sm rounded-button border border-gray-300 hover:border-primary hover:text-primary transition-colors whitespace-nowrap">
+Usage Tactique
+</button>
+<button class="bg-white px-4 py-2 text-sm rounded-button border border-gray-300 hover:border-primary hover:text-primary transition-colors whitespace-nowrap">
+Usage Défensif
+</button>
+<button class="bg-white px-4 py-2 text-sm rounded-button border border-gray-300 hover:border-primary hover:text-primary transition-colors whitespace-nowrap">
+Certifié OTAN
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-medium text-gray-700">Trier par:</span>
+<select class="bg-white px-4 py-2 text-sm rounded-button border border-gray-300 pr-8 appearance-none cursor-pointer">
+<option>Pertinence</option>
+<option>Nouveautés</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Catégories Principales -->
+<section class="py-12 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-10">Catégories d'Équipements</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Catégorie 1 -->
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20tactical%20military%20equipment%20including%20vests%2C%20holsters%2C%20and%20utility%20belts%20arranged%20on%20display%20with%20neutral%20background%2C%20high-quality%20professional%20photography%20with%20soft%20lighting&width=600&height=400&seq=cat1&orientation=landscape" alt="Équipements Tactiques" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+</div>
+<div class="p-5">
+<h3 class="text-xl font-semibold mb-2">Équipements Tactiques</h3>
+<p class="text-gray-600 mb-4">Gilets, ceinturons et accessoires pour optimiser vos opérations tactiques.</p>
+<a href="#" class="text-primary font-medium flex items-center gap-1 hover:underline">
+Découvrir
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Catégorie 2 -->
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20ballistic%20protection%20equipment%20including%20bulletproof%20vests%20and%20helmets%20displayed%20on%20mannequins%20with%20neutral%20background%2C%20high-quality%20professional%20photography%20with%20soft%20lighting&width=600&height=400&seq=cat2&orientation=landscape" alt="Protection Balistique" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+</div>
+<div class="p-5">
+<h3 class="text-xl font-semibold mb-2">Protection Balistique</h3>
+<p class="text-gray-600 mb-4">Gilets pare-balles, casques et boucliers certifiés aux normes internationales.</p>
+<a href="#" class="text-primary font-medium flex items-center gap-1 hover:underline">
+Découvrir
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Catégorie 3 -->
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20military%20communication%20equipment%20including%20radios%2C%20headsets%2C%20and%20tactical%20communication%20devices%20displayed%20on%20a%20table%20with%20neutral%20background%2C%20high-quality%20professional%20photography%20with%20soft%20lighting&width=600&height=400&seq=cat3&orientation=landscape" alt="Matériel de Communication" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+</div>
+<div class="p-5">
+<h3 class="text-xl font-semibold mb-2">Matériel de Communication</h3>
+<p class="text-gray-600 mb-4">Systèmes radio, casques et équipements de communication sécurisée.</p>
+<a href="#" class="text-primary font-medium flex items-center gap-1 hover:underline">
+Découvrir
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Catégorie 4 -->
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20military%20optical%20equipment%20including%20night%20vision%20goggles%2C%20binoculars%2C%20and%20scopes%20displayed%20on%20a%20table%20with%20neutral%20background%2C%20high-quality%20professional%20photography%20with%20soft%20lighting&width=600&height=400&seq=cat4&orientation=landscape" alt="Optique et Vision" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+</div>
+<div class="p-5">
+<h3 class="text-xl font-semibold mb-2">Optique et Vision</h3>
+<p class="text-gray-600 mb-4">Jumelles, lunettes de vision nocturne et systèmes d'observation avancés.</p>
+<a href="#" class="text-primary font-medium flex items-center gap-1 hover:underline">
+Découvrir
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Produits Vedettes -->
+<section class="py-12 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-10">Produits Vedettes</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Produit 1 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20tactical%20military%20vest%20with%20pouches%20and%20attachments%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod1&orientation=landscape" alt="Gilet Tactique Professionnel" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Gilet Tactique Professionnel</h3>
+<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Disponible</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: GT-450-PRO</p>
+<p class="text-gray-600 mb-4">Gilet tactique modulaire avec système MOLLE, certifié pour usage professionnel.</p>
+<button class="w-full bg-primary text-white py-2 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+Demande d'Information
+</button>
+</div>
+</div>
+<!-- Produit 2 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20ballistic%20helmet%20with%20attachments%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod2&orientation=landscape" alt="Casque Balistique Avancé" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Casque Balistique Avancé</h3>
+<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Disponible</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: CB-320-NIJ</p>
+<p class="text-gray-600 mb-4">Casque balistique niveau IIIA avec rails latéraux et support NVG intégré.</p>
+<button class="w-full bg-primary text-white py-2 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+Demande d'Information
+</button>
+</div>
+</div>
+<!-- Produit 3 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20military%20radio%20communication%20system%20with%20headset%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod3&orientation=landscape" alt="Système de Communication Tactique" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Système de Communication Tactique</h3>
+<span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Sur commande</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: SCT-780-SEC</p>
+<p class="text-gray-600 mb-4">Système radio sécurisé avec cryptage avancé et casque antibruit intégré.</p>
+<button class="w-full bg-primary text-white py-2 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+Demande d'Information
+</button>
+</div>
+</div>
+<!-- Produit 4 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20night%20vision%20goggles%20mounted%20on%20helmet%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod4&orientation=landscape" alt="Lunettes de Vision Nocturne" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Lunettes de Vision Nocturne</h3>
+<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Disponible</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: LVN-550-GEN3</p>
+<p class="text-gray-600 mb-4">Système de vision nocturne Gen 3+ avec amplification de lumière avancée.</p>
+<button class="w-full bg-primary text-white py-2 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+Demande d'Information
+</button>
+</div>
+</div>
+<!-- Produit 5 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20bulletproof%20vest%20with%20ceramic%20plates%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod5&orientation=landscape" alt="Gilet Pare-Balles Niveau IV" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Gilet Pare-Balles Niveau IV</h3>
+<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Disponible</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: GPB-440-NIV</p>
+<p class="text-gray-600 mb-4">Gilet pare-balles avec plaques céramiques niveau IV, certifié NIJ 0101.06.</p>
+<button class="w-full bg-primary text-white py-2 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+Demande d'Information
+</button>
+</div>
+</div>
+<!-- Produit 6 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-56 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20military%20binoculars%20with%20rangefinder%20on%20neutral%20background%2C%20high-quality%20product%20photography%20with%20soft%20lighting&width=600&height=400&seq=prod6&orientation=landscape" alt="Jumelles Tactiques avec Télémètre" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-semibold">Jumelles Tactiques avec Télémètre</h3>
+<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Rupture de stock</span>
+</div>
+<p class="text-gray-500 text-sm mb-3">Réf: JTT-880-LRF</p>
+<p class="text-gray-600 mb-4">Jumelles militaires avec télémètre laser intégré et boussole numérique.</p>
+<button class="w-full bg-gray-300 text-gray-700 py-2 px-4 rounded-button font-medium cursor-not-allowed whitespace-nowrap">
+Indisponible
+</button>
+</div>
+</div>
+</div>
+<div class="mt-10 text-center">
+<button class="bg-white text-primary border border-primary py-3 px-8 rounded-button font-medium hover:bg-gray-50 transition-colors shadow-sm whitespace-nowrap">
+Voir tout le catalogue
+</button>
+</div>
+</div>
+</section>
+<!-- Section Certifications -->
+<section class="py-10 bg-white border-y border-gray-200">
+<div class="container mx-auto px-4">
+<h2 class="text-2xl font-bold text-center mb-8">Nos Certifications et Partenaires</h2>
+<div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center text-primary">
+<i class="ri-shield-check-fill ri-3x"></i>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-700">ISO 9001</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center text-primary">
+<i class="ri-government-fill ri-3x"></i>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-700">Certifié OTAN</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center text-primary">
+<i class="ri-medal-fill ri-3x"></i>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-700">NIJ Standard</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center text-primary">
+<i class="ri-verified-badge-fill ri-3x"></i>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-700">STANAG 2920</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center text-primary">
+<i class="ri-award-fill ri-3x"></i>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-700">CE Certified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="bg-primary rounded-lg p-8 md:p-12 shadow-lg">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold text-white mb-4">Besoin d'un équipement spécifique ?</h2>
+<p class="text-white/90 mb-8">Nos experts sont à votre disposition pour vous conseiller et vous proposer des solutions adaptées à vos besoins spécifiques.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-transparent text-white border border-white py-3 px-6 rounded-button font-medium hover:bg-white/10 transition-colors whitespace-nowrap">
+Contacter un Conseiller
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-6">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+<!-- Logo et Description -->
+<div>
+<div class="flex items-center mb-4">
+<div class="w-8 h-8 flex items-center justify-center text-white mr-2">
+<i class="ri-shield-star-line ri-lg"></i>
+</div>
+<span class="text-xl font-['Pacifico'] text-white">Chad gun</span>
+</div>
+<p class="text-gray-400 mb-4">conseiller en équipements militaires professionnels depuis 2005. Certifié et conforme aux normes internationales.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-linkedin-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-facebook-fill"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Liens Rapides -->
+<div>
+<h3 class="text-lg font-semibold mb-4">Liens Rapides</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Catalogue Complet</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Nouveautés</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Promotions</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Demande de Devis</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Service Après-Vente</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+</ul>
+</div>
+<!-- Informations Légales -->
+<div>
+<h3 class="text-lg font-semibold mb-4">Informations Légales</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Conditions Générales de Vente</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Politique de Confidentialité</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mentions Légales</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Conformité Réglementaire</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Licences et Autorisations</a></li>
+</ul>
+</div>
+<!-- Contact et Newsletter -->
+<div>
+<h3 class="text-lg font-semibold mb-4">Restez Informé</h3>
+<p class="text-gray-400 mb-4">Inscrivez-vous à notre newsletter professionnelle pour recevoir nos actualités et offres exclusives.</p>
+<div class="flex mb-4">
+<input type="email" placeholder="Votre email professionnel" class="bg-gray-800 text-white px-4 py-2 rounded-l-button w-full border-none focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+<button class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+S'inscrire
+</button>
+</div>
+<p class="text-gray-500 text-xs">En vous inscrivant, vous acceptez notre politique de confidentialité et confirmez être un professionnel du secteur.</p>
+</div>
+</div>
+<!-- Éléments de Sécurité -->
+<div class="border-t border-gray-800 pt-6 mt-6">
+<div class="flex flex-wrap justify-between items-center">
+<div class="flex items-center space-x-4 mb-4 md:mb-0">
+<div class="flex items-center text-gray-400">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-lock-fill"></i>
+</div>
+<span class="text-sm">Site Sécurisé SSL</span>
+</div>
+<div class="flex items-center text-gray-400">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-shield-check-fill"></i>
+</div>
+<span class="text-sm">Vérification d'identité</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-visa-fill ri-lg"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-mastercard-fill ri-lg"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-bank-card-fill ri-lg"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center text-gray-400">
+<i class="ri-paypal-fill ri-lg"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- Copyright -->
+<div class="text-center mt-8">
+<p class="text-gray-500 text-sm">© 2025 Chad gun. Tous droits réservés. Vente réservée aux professionnels autorisés.</p>
+</div>
+</div>
+</footer>
+<script id="mobileMenuScript">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.querySelector('.ri-menu-line').parentElement;
+const mobileMenu = document.querySelector('nav');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+});
+</script>
+<script id="searchScript">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileSearchButton = document.querySelector('.ri-search-line').parentElement;
+const searchBar = document.querySelector('input[type="search"]').parentElement.parentElement;
+mobileSearchButton.addEventListener('click', function() {
+searchBar.classList.toggle('hidden');
+searchBar.classList.toggle('md:flex');
+searchBar.classList.toggle('flex');
+});
+});
+</script>
+</body>
+</html>

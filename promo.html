@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions - Chad gun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#1a3a5f',secondary:'#d9a64e'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+        
+        .custom-checkbox input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #1a3a5f;
+            border-color: #1a3a5f;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #1a3a5f;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
+            display: none;
+        }
+        
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .countdown-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(26, 58, 95, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #d9a64e;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+        
+        .price-new {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .filter-button.active {
+            background-color: #1a3a5f;
+            color: white;
+        }
+        
+        .sort-button.active {
+            background-color: #1a3a5f;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <!-- Bandeau de sécurité -->
+        <div class="bg-primary text-white py-1 px-4 text-center text-sm">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-5 h-5 flex items-center justify-center">
+                    <i class="ri-shield-check-line"></i>
+                </div>
+                <span>Site Sécurisé - Accès Professionnel</span>
+            </div>
+        </div>
+        
+        <!-- Navigation principale -->
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <div class="w-8 h-8 flex items-center justify-center text-primary mr-2">
+                    <i class="ri-shield-star-line ri-lg"></i>
+                </div>
+                <a href="#" class="text-2xl font-['Pacifico'] text-primary">Chad gun</a>
+            </div>
+            
+            <!-- Barre de recherche -->
+            <div class="hidden md:flex items-center flex-1 max-w-xl mx-8">
+                <div class="relative w-full">
+                    <input type="search" placeholder="Rechercher un équipement..." class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center text-gray-400">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation droite -->
+            <div class="flex items-center gap-4">
+                <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-search-line ri-lg"></i>
+                </button>
+                
+                <button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-user-line ri-lg"></i>
+                </button>
+                
+                <div class="relative">
+                    <button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                        <i class="ri-shopping-cart-line ri-lg"></i>
+                    </button>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                </div>
+                
+                <button class="w-10 h-10 md:hidden flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu de navigation -->
+        <nav class="hidden md:block border-t border-gray-200">
+            <div class="container mx-auto px-4">
+                <ul class="flex items-center justify-center space-x-8">
+                    <li><a href="index.html" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Accueil</a></li>
+                    <!--li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Catalogue</a></li>
+                    <li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Nouveautés</a></li-->
+                    <li><a href="promo.html" data-readdy="true" class="py-3 px-2 inline-block font-medium text-primary border-b-2 border-primary">Promotions</a></li>
+                    <!--li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Services</a></li>
+                    <li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">À propos</a></li>
+                    <li><a href="#" class="py-3 px-2 inline-block font-medium text-gray-700 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Contact</a></li-->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Bannière Promotionnelle -->
+        <section class="relative w-full bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=professional%2520military%2520tactical%2520equipment%2520on%2520display%2520with%2520special%2520offer%2520tags%2520and%2520promotional%2520banners.%2520The%2520image%2520shows%2520high-quality%2520gear%2520including%2520tactical%2520vests%252C%2520helmets%252C%2520and%2520protective%2520equipment%2520with%2520price%2520reduction%2520labels.%2520The%2520left%2520side%2520has%2520a%2520gradient%2520to%2520white%2520for%2520text%2520placement.%2520Professional%2520promotional%2520photography%2520with%2520blue%2520tones&width=1600&height=500&seq=promo_hero&orientation=landscape');">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+            <div class="container mx-auto px-4 py-16 md:py-20 relative">
+                <div class="w-full md:w-1/2 lg:w-5/12">
+                    <div class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Offres Limitées</div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Offres Spéciales</h1>
+                    <p class="text-lg text-gray-700 mb-4">Profitez de remises exceptionnelles sur une sélection d'équipements militaires professionnels jusqu'au 30 juin 2025.</p>
+                    <p class="text-gray-600 mb-8">Plus de 200 produits à prix réduits pour les professionnels de la sécurité et de la défense.</p>
+                    <a href="#promotions" class="bg-primary text-white py-3 px-6 rounded-button font-medium hover:bg-primary/90 transition-colors shadow-md whitespace-nowrap !rounded-button">
+                        Découvrir les Offres
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtres et Tri -->
+        <section class="py-6 bg-white shadow-sm sticky top-[136px] z-40">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <!-- Filtres par catégorie -->
+                    <div class="flex flex-wrap gap-2">
+                        <button class="filter-button active px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" data-category="all">
+                            Toutes les catégories
+                        </button>
+                        <button class="filter-button px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" data-category="protection">
+                            Protection
+                        </button>
+                        <button class="filter-button px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" data-category="armement">
+                            Armement
+                        </button>
+                        <button class="filter-button px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" data-category="tactique">
+                            Tactique
+                        </button>
+                        <button class="filter-button px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" data-category="optique">
+                            Optique
+                        </button>
+                    </div>
+                    
+                    <!-- Tri -->
+                    <div class="flex flex-wrap gap-2">
+                        <div class="relative">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-button text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" id="sort-dropdown-button">
+                                <span>Trier par</span>
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </div>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-20 hidden" id="sort-dropdown">
+                                <button class="sort-button active w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors" data-sort="discount-desc">
+                                    Remise (décroissante)
+                                </button>
+                                <button class="sort-button w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors" data-sort="discount-asc">
+                                    Remise (croissante)
+                                </button>
+                                <button class="sort-button w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors" data-sort="price-desc">
+                                    Prix (décroissant)
+                                </button>
+                                <button class="sort-button w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors" data-sort="price-asc">
+                                    Prix (croissant)
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-button text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap" id="availability-filter">
+                            <label class="custom-switch inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only" id="availability-toggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span>En stock uniquement</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grille des Produits en Promotion -->
+        <section id="promotions" class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">Nos Offres Promotionnelles</h2>
+                
+                <!-- Grille de produits -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Produit 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="protection" data-discount="30" data-price="699">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520bulletproof%2520vest%2520with%2520ceramic%2520plates%2520and%2520modular%2520attachment%2520system%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520body%2520armor%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product1&orientation=landscape" alt="Gilet Pare-Balles Tactique Pro-X" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-30%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>3 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Gilet Pare-Balles Tactique Pro-X</h3>
+                            <p class="text-gray-600 text-sm mb-3">Protection balistique niveau IV avec plaques céramiques, système modulaire et confort optimal pour les interventions longues.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">999 €</span>
+                                    <span class="price-new text-xl ml-2">699 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="armement" data-discount="25" data-price="1499">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520rifle%2520scope%2520with%2520advanced%2520optics%2520and%2520night%2520vision%2520capability%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520optical%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product2&orientation=landscape" alt="Lunette de Visée Tactique NightHawk" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-25%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>5 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Lunette de Visée Tactique NightHawk</h3>
+                            <p class="text-gray-600 text-sm mb-3">Optique de précision avec vision nocturne intégrée, zoom 4-16x et réticule illuminé pour les opérations en conditions de faible luminosité.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">1999 €</span>
+                                    <span class="price-new text-xl ml-2">1499 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="tactique" data-discount="40" data-price="299">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520helmet%2520with%2520rail%2520system%2520and%2520night%2520vision%2520mount%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520head%2520protection%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product3&orientation=landscape" alt="Casque Balistique Modulaire TacOps" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-40%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>2 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Casque Balistique Modulaire TacOps</h3>
+                            <p class="text-gray-600 text-sm mb-3">Protection balistique niveau IIIA avec système de rails intégré, compatible avec accessoires tactiques et systèmes de communication.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">499 €</span>
+                                    <span class="price-new text-xl ml-2">299 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit 4 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="optique" data-discount="35" data-price="1299">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520thermal%2520imaging%2520monocular%2520with%2520advanced%2520detection%2520capabilities%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520thermal%2520vision%2520device%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product4&orientation=landscape" alt="Monoculaire Thermique Avancé ThermalEye" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-35%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>7 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Monoculaire Thermique Avancé ThermalEye</h3>
+                            <p class="text-gray-600 text-sm mb-3">Détection thermique haute résolution avec portée de 1200m, enregistrement vidéo et photo, autonomie de 8 heures en utilisation continue.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">1999 €</span>
+                                    <span class="price-new text-xl ml-2">1299 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit 5 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="tactique" data-discount="20" data-price="159">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520gloves%2520with%2520reinforced%2520knuckles%2520and%2520touchscreen%2520capability%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520hand%2520protection%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product5&orientation=landscape" alt="Gants Tactiques Renforcés StrikePro" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-20%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>10 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Gants Tactiques Renforcés StrikePro</h3>
+                            <p class="text-gray-600 text-sm mb-3">Gants d'intervention avec protection des articulations, compatibles écran tactile et résistants aux coupures niveau 5.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">199 €</span>
+                                    <span class="price-new text-xl ml-2">159 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit 6 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden product-card" data-category="armement" data-discount="15" data-price="849">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520holster%2520system%2520with%2520modular%2520attachments%2520and%2520quick-release%2520mechanism%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=product6&orientation=landscape" alt="Système de Holster Modulaire QuickDraw" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-15%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>8 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Système de Holster Modulaire QuickDraw</h3>
+                            <p class="text-gray-600 text-sm mb-3">Holster professionnel avec système de déverrouillage rapide, compatible avec plateforme MOLLE et ajustable pour différents modèles d'armes.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">999 €</span>
+                                    <span class="price-new text-xl ml-2">849 €</span>
+                                </div>
+                                <div class="text-sm text-yellow-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>Stock limité</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bannière Offre Spéciale -->
+                <div class="bg-gradient-to-r from-primary to-primary/80 rounded-lg p-6 md:p-8 shadow-lg mb-12">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="text-white">
+                            <h3 class="text-2xl font-bold mb-2">Offre Spéciale Pack Intervention</h3>
+                            <p class="mb-4 text-white/90">Ensemble complet comprenant gilet tactique, casque, gants et accessoires avec une remise exceptionnelle de 45%</p>
+                            <div class="flex items-center gap-3">
+                                <span class="text-white/80 line-through text-lg">3499 €</span>
+                                <span class="text-white text-2xl font-bold">1899 €</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="bg-white text-primary text-center px-4 py-2 rounded-lg font-medium">
+                                <div class="text-2xl font-bold">2</div>
+                                <div class="text-xs">Jours</div>
+                            </div>
+                            <div class="bg-white text-primary text-center px-4 py-2 rounded-lg font-medium">
+                                <div class="text-2xl font-bold">08</div>
+                                <div class="text-xs">Heures</div>
+                            </div>
+                            <div class="bg-white text-primary text-center px-4 py-2 rounded-lg font-medium">
+                                <div class="text-2xl font-bold">45</div>
+                                <div class="text-xs">Minutes</div>
+                            </div>
+                            <div class="bg-white text-primary text-center px-4 py-2 rounded-lg font-medium">
+                                <div class="text-2xl font-bold">30</div>
+                                <div class="text-xs">Secondes</div>
+                            </div>
+                        </div>
+                        <button class="bg-white text-primary py-3 px-6 rounded-button font-medium hover:bg-gray-100 transition-colors shadow-md whitespace-nowrap !rounded-button">
+                            Voir l'offre
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Section Dernière Chance -->
+                <h2 class="text-2xl font-bold mb-6">Dernière Chance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Produit Dernière Chance 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520boots%2520with%2520reinforced%2520construction%2520and%2520all-terrain%2520soles%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520footwear%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=400&height=300&seq=last1&orientation=landscape" alt="Bottes Tactiques AllTerrain" class="w-full h-48 object-cover object-top">
+                            <div class="discount-badge">-50%</div>
+                            <div class="countdown-badge bg-red-600">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-alarm-warning-line"></i>
+                                    </div>
+                                    <span>24h restantes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-base font-semibold mb-1">Bottes Tactiques AllTerrain</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <div>
+                                    <span class="price-old text-sm">299 €</span>
+                                    <span class="price-new text-base ml-2">149 €</span>
+                                </div>
+                                <div class="text-xs text-green-600">En stock</div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors text-sm whitespace-nowrap !rounded-button">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit Dernière Chance 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520backpack%2520with%2520modular%2520system%2520and%2520multiple%2520compartments%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=400&height=300&seq=last2&orientation=landscape" alt="Sac à Dos Tactique Modulaire" class="w-full h-48 object-cover object-top">
+                            <div class="discount-badge">-45%</div>
+                            <div class="countdown-badge bg-red-600">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-alarm-warning-line"></i>
+                                    </div>
+                                    <span>24h restantes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-base font-semibold mb-1">Sac à Dos Tactique Modulaire</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <div>
+                                    <span class="price-old text-sm">249 €</span>
+                                    <span class="price-new text-base ml-2">139 €</span>
+                                </div>
+                                <div class="text-xs text-green-600">En stock</div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors text-sm whitespace-nowrap !rounded-button">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit Dernière Chance 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520radio%2520communication%2520system%2520with%2520headset%2520and%2520microphone%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=400&height=300&seq=last3&orientation=landscape" alt="Système de Communication Tactique" class="w-full h-48 object-cover object-top">
+                            <div class="discount-badge">-40%</div>
+                            <div class="countdown-badge bg-red-600">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-alarm-warning-line"></i>
+                                    </div>
+                                    <span>24h restantes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-base font-semibold mb-1">Système de Communication Tactique</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <div>
+                                    <span class="price-old text-sm">599 €</span>
+                                    <span class="price-new text-base ml-2">359 €</span>
+                                </div>
+                                <div class="text-xs text-yellow-600">Stock limité</div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors text-sm whitespace-nowrap !rounded-button">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Produit Dernière Chance 4 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520flashlight%2520with%2520high%2520lumens%2520and%2520multiple%2520modes%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=400&height=300&seq=last4&orientation=landscape" alt="Lampe Tactique Ultra-Puissante" class="w-full h-48 object-cover object-top">
+                            <div class="discount-badge">-35%</div>
+                            <div class="countdown-badge bg-red-600">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-alarm-warning-line"></i>
+                                    </div>
+                                    <span>24h restantes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-base font-semibold mb-1">Lampe Tactique Ultra-Puissante</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <div>
+                                    <span class="price-old text-sm">179 €</span>
+                                    <span class="price-new text-base ml-2">119 €</span>
+                                </div>
+                                <div class="text-xs text-green-600">En stock</div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors text-sm whitespace-nowrap !rounded-button">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section Meilleures Offres -->
+                <h2 class="text-2xl font-bold mb-6">Meilleures Offres</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Meilleure Offre 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520night%2520vision%2520goggles%2520with%2520advanced%2520optics%2520and%2520head%2520mount%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=best1&orientation=landscape" alt="Jumelles Vision Nocturne Avancées" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-60%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>6 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Jumelles Vision Nocturne Avancées</h3>
+                            <p class="text-gray-600 text-sm mb-3">Vision nocturne génération 3+ avec amplification x4, système de fixation pour casque et autonomie de 40 heures.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">3999 €</span>
+                                    <span class="price-new text-xl ml-2">1599 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Meilleure Offre 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520tactical%2520drone%2520with%2520camera%2520and%2520portable%2520control%2520system%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=best2&orientation=landscape" alt="Drone Tactique de Reconnaissance" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-55%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>4 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Drone Tactique de Reconnaissance</h3>
+                            <p class="text-gray-600 text-sm mb-3">Drone compact avec caméra thermique et optique, transmission cryptée et autonomie de 45 minutes en conditions opérationnelles.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">4499 €</span>
+                                    <span class="price-new text-xl ml-2">1999 €</span>
+                                </div>
+                                <div class="text-sm text-yellow-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>Stock limité</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Meilleure Offre 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%2520ballistic%2520shield%2520with%2520viewing%2520window%2520and%2520tactical%2520light%252C%2520displayed%2520on%2520plain%2520background.%2520The%2520image%2520shows%2520high-quality%2520military-grade%2520equipment%2520with%2520detailed%2520construction%2520and%2520professional%2520finish.%2520Product%2520photography%2520with%2520neutral%2520lighting&width=600&height=400&seq=best3&orientation=landscape" alt="Bouclier Balistique Tactique" class="w-full h-64 object-cover object-top">
+                            <div class="discount-badge">-50%</div>
+                            <div class="countdown-badge">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>5 jours restants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-semibold mb-2">Bouclier Balistique Tactique</h3>
+                            <p class="text-gray-600 text-sm mb-3">Protection balistique niveau III avec fenêtre de visée, éclairage intégré et poignées ergonomiques pour les interventions à haut risque.</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="price-old text-lg">2999 €</span>
+                                    <span class="price-new text-xl ml-2">1499 €</span>
+                                </div>
+                                <div class="text-sm text-green-600 flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-checkbox-circle-line"></i>
+                                    </div>
+                                    <span>En stock</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </div>
+                                <span>Ajouter au panier</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 rounded-l-md text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            Précédent
+                        </a>
+                        <a href="#" class="px-4 py-2 bg-primary border border-primary text-sm font-medium text-white">
+                            1
+                        </a>
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            2
+                        </a>
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            3
+                        </a>
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 rounded-r-md text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            Suivant
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-12 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4">Restez Informé des Prochaines Promotions</h2>
+                    <p class="text-gray-600 mb-8">Inscrivez-vous à notre newsletter pour être alerté en priorité des nouvelles offres et promotions exclusives réservées aux professionnels.</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                        <input type="email" placeholder="Votre email professionnel" class="flex-1 px-4 py-3 rounded-button border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button class="bg-primary text-white py-3 px-6 rounded-button font-medium hover:bg-primary/90 transition-colors shadow-md whitespace-nowrap !rounded-button">
+                            S'inscrire aux Promotions
+                        </button>
+                    </div>
+                    
+                    <p class="text-gray-500 text-sm">En vous inscrivant, vous bénéficierez d'un code promo de 5% sur votre prochaine commande. Vous pouvez vous désinscrire à tout moment.</p>
+                    
+                    <div class="flex items-center justify-center mt-6">
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <span class="text-gray-600 text-sm">J'accepte de recevoir des communications commerciales de la part de Chad gun</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <!-- Logo et Description -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center text-white mr-2">
+                            <i class="ri-shield-star-line ri-lg"></i>
+                        </div>
+                        <span class="text-xl font-['Pacifico'] text-white">Chad gun</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">conseiller en équipements militaires professionnels depuis 2005. Certifié et conforme aux normes internationales.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-linkedin-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-twitter-x-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Liens Rapides -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Catalogue Complet</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Nouveautés</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Promotions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Demande de Devis</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Service Après-Vente</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations Légales -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Informations Légales</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Conditions Générales de Vente</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mentions Légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Conformité Réglementaire</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Licences et Autorisations</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact et Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Restez Informé</h3>
+                    <p class="text-gray-400 mb-4">Inscrivez-vous à notre newsletter professionnelle pour recevoir nos actualités et offres exclusives.</p>
+                    <div class="flex mb-4">
+                        <input type="email" placeholder="Votre email professionnel" class="bg-gray-800 text-white px-4 py-2 rounded-l-button w-full border-none focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                        <button class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90 transition-colors whitespace-nowrap !rounded-button">
+                            S'inscrire
+                        </button>
+                    </div>
+                    <p class="text-gray-500 text-xs">En vous inscrivant, vous acceptez notre politique de confidentialité et confirmez être un professionnel du secteur.</p>
+                </div>
+            </div>
+            
+            <!-- Éléments de Sécurité -->
+            <div class="border-t border-gray-800 pt-6 mt-6">
+                <div class="flex flex-wrap justify-between items-center">
+                    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                        <div class="flex items-center text-gray-400">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-lock-fill"></i>
+                            </div>
+                            <span class="text-sm">Site Sécurisé SSL</span>
+                        </div>
+                        <div class="flex items-center text-gray-400">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-shield-check-fill"></i>
+                            </div>
+                            <span class="text-sm">Vérification d'identité</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-visa-fill ri-lg"></i>
+                        </div>
+                        <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-mastercard-fill ri-lg"></i>
+                        </div>
+                        <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-bank-card-fill ri-lg"></i>
+                        </div>
+                        <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                            <i class="ri-paypal-fill ri-lg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center mt-8">
+                <p class="text-gray-500 text-sm">© 2025 Chad gun. Tous droits réservés. Vente réservée aux professionnels autorisés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="mobileMenuScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.ri-menu-line').parentElement;
+            const mobileMenu = document.querySelector('nav');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+
+    <script id="searchScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileSearchButton = document.querySelector('.ri-search-line').parentElement;
+            const searchBar = document.querySelector('input[type="search"]').parentElement.parentElement;
+            
+            mobileSearchButton.addEventListener('click', function() {
+                searchBar.classList.toggle('hidden');
+                searchBar.classList.toggle('md:flex');
+                searchBar.classList.toggle('flex');
+            });
+        });
+    </script>
+
+    <script id="filterAndSortScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des filtres par catégorie
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Mise à jour des boutons actifs
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filtrage des produits
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Gestion du dropdown de tri
+            const sortDropdownButton = document.getElementById('sort-dropdown-button');
+            const sortDropdown = document.getElementById('sort-dropdown');
+            
+            sortDropdownButton.addEventListener('click', function() {
+                sortDropdown.classList.toggle('hidden');
+            });
+            
+            // Fermer le dropdown quand on clique ailleurs
+            document.addEventListener('click', function(event) {
+                if (!sortDropdownButton.contains(event.target) && !sortDropdown.contains(event.target)) {
+                    sortDropdown.classList.add('hidden');
+                }
+            });
+            
+            // Gestion des options de tri
+            const sortButtons = document.querySelectorAll('.sort-button');
+            
+            sortButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Mise à jour des boutons actifs
+                    sortButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const sortOption = this.getAttribute('data-sort');
+                    sortProducts(sortOption);
+                    
+                    // Fermer le dropdown après sélection
+                    sortDropdown.classList.add('hidden');
+                });
+            });
+            
+            function sortProducts(option) {
+                const productsContainer = document.querySelector('.grid');
+                const products = Array.from(productCards);
+                
+                products.sort((a, b) => {
+                    const discountA = parseInt(a.getAttribute('data-discount'));
+                    const discountB = parseInt(b.getAttribute('data-discount'));
+                    const priceA = parseInt(a.getAttribute('data-price'));
+                    const priceB = parseInt(b.getAttribute('data-price'));
+                    
+                    if (option === 'discount-desc') {
+                        return discountB - discountA;
+                    } else if (option === 'discount-asc') {
+                        return discountA - discountB;
+                    } else if (option === 'price-desc') {
+                        return priceB - priceA;
+                    } else if (option === 'price-asc') {
+                        return priceA - priceB;
+                    }
+                });
+                
+                // Réorganiser les produits dans le DOM
+                products.forEach(product => {
+                    productsContainer.appendChild(product);
+                });
+            }
+            
+            // Gestion du filtre de disponibilité
+            const availabilityToggle = document.getElementById('availability-toggle');
+            
+            availabilityToggle.addEventListener('change', function() {
+                const showOnlyInStock = this.checked;
+                
+                productCards.forEach(card => {
+                    const stockStatus = card.querySelector('.text-green-600, .text-yellow-600');
+                    
+                    if (showOnlyInStock && stockStatus && stockStatus.classList.contains('text-yellow-600')) {
+                        card.style.display = 'none';
+                    } else if (card.style.display !== 'none' || !showOnlyInStock) {
+                        // Vérifier si le produit n'est pas déjà caché par le filtre de catégorie
+                        const activeCategory = document.querySelector('.filter-button.active').getAttribute('data-category');
+                        if (activeCategory === 'all' || card.getAttribute('data-category') === activeCategory) {
+                            card.style.display = 'block';
+                        }
+                    }
+                });
+            });
+            
+            // Initialiser le tri par défaut
+            sortProducts('discount-desc');
+        });
+    </script>
+
+    <script id="countdownScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simuler un compte à rebours pour l'offre spéciale
+            let days = 2;
+            let hours = 8;
+            let minutes = 45;
+            let seconds = 30;
+            
+            const daysElement = document.querySelector('.bg-white.text-primary:nth-child(1) .text-2xl');
+            const hoursElement = document.querySelector('.bg-white.text-primary:nth-child(2) .text-2xl');
+            const minutesElement = document.querySelector('.bg-white.text-primary:nth-child(3) .text-2xl');
+            const secondsElement = document.querySelector('.bg-white.text-primary:nth-child(4) .text-2xl');
+            
+            function updateCountdown() {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                
+                if (hours < 0) {
+                    hours = 23;
+                    days--;
+                }
+                
+                if (days < 0) {
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                }
+                
+                daysElement.textContent = days;
+                hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+                minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+                secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+            }
+            
+            // Mettre à jour le compte à rebours toutes les secondes
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
